@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #myCanvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="300" height="300"></canvas>
+
+<script>
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var x = 150;
+    var y = 150;
+    var dx = 2;
+    var dy = 4;
+
+    function drawHeart() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        ctx.moveTo(x + 75,y + 40);
+        ctx.bezierCurveTo(x + 75,y + 37,x + 70,y + 25,x + 50,y + 25);
+        ctx.bezierCurveTo(x + 20,y + 25,x + 20,y + 62.5,x + 20,y + 62.5);
+        ctx.bezierCurveTo(x + 20,y + 80,x + 40,y + 102,x + 75,y + 120);
+        ctx.bezierCurveTo(x + 110,y + 102,x + 130,y + 80,x + 130,y + 62.5);
+        ctx.bezierCurveTo(x + 130,y + 62.5,x + 130,y + 25,x + 100,y + 25);
+        ctx.bezierCurveTo(x + 85,y + 25,x + 75,y + 37,x + 75,y + 40);
+        ctx.fill();
+        x += dx;
+        y += dy;
+        if (x + 130 > canvas.width || x < 0) {
+            dx = -dx;
+        }
+        if (y + 120 > canvas.height || y < 0) {
+            dy = -dy;
+        }
+    }
+
+    setInterval(drawHeart, 10);
+</script>
+
+</body>
+</html>
